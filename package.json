@@ -1,0 +1,44 @@
+{
+  "name": "express-rest-api",
+  "version": "1.0.0",
+  "description": "A rest API made with NodeJS and Express",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugo-85/node-express-rest-api.git"
+  },
+  "keywords": [
+    "API",
+    "REST",
+    "NodeJS",
+    "Express"
+  ],
+  "author": "Hugo Margiotta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hugo-85/node-express-rest-api/issues"
+  },
+  "homepage": "https://github.com/hugo-85/node-express-rest-api#readme",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "5.1.0",
+    "mongodb": "^6.19.0",
+    "zod": "4.1.8"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.4.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.5",
+    "typescript": "5.9.2"
+  }
+}
