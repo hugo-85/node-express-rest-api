@@ -1,41 +1,45 @@
 import "dotenv/config";
 import express, { json } from "express";
-import { connectToDatabase, getDatabase } from "./lib/db.js";
-import { gamesRouter } from "./routes/games.js";
+import { connectToDatabase } from "./lib/db.js";
+import { createGameRouter } from "./routes/games.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import { utilsRouter } from "./routes/utils.js";
+import { TGameModel } from "./interfaces/modelInterfaces.js";
 
-const app = express();
-const PORT = process.env.PORT || 1234;
+export const createApp = ({ gameModel }: { gameModel: TGameModel }) => {
+  const app = express();
 
-app.disable("x-powered-by"); // disabled header X-Powered-By: Express
+  const PORT = process.env.PORT || 1234;
 
-// Middleware
-app.use(json());
-app.use(corsMiddleware());
+  app.disable("x-powered-by"); // disabled header X-Powered-By: Express
 
-// Sample route
-app.get("/", (_req, res) => {
-  res.send("Hello, World!");
-});
+  // Middleware
+  app.use(json());
+  app.use(corsMiddleware());
 
-app.use("/api/games", gamesRouter);
-app.use("/api/utils", utilsRouter);
+  // Sample route
+  app.get("/", (_req, res) => {
+    res.send("Hello, World!");
+  });
 
-// Start the server with database connection
-async function startServer() {
-  try {
-    // Connect to MongoDB first
-    await connectToDatabase();
+  app.use("/api/games", createGameRouter({ gameModel: gameModel }));
+  app.use("/api/utils", utilsRouter);
 
-    // Then start the server
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("❌ Error starting server:", error);
-    process.exit(1);
+  // Start the server with database connection
+  async function startServer() {
+    try {
+      // Connect to MongoDB first
+      await connectToDatabase();
+
+      // Then start the server
+      app.listen(PORT, () => {
+        console.log(`🚀 Server is running on http://localhost:${PORT}`);
+      });
+    } catch (error) {
+      console.error("❌ Error starting server:", error);
+      process.exit(1);
+    }
   }
-}
 
-startServer();
+  startServer();
+};

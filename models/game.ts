@@ -162,3 +162,5 @@ export const deleteGame = async ({ gameId }: { gameId: string }) => {
     };
   }
 };
+
+export default { getAllGames, getGame, createGame, updateGame, deleteGame };

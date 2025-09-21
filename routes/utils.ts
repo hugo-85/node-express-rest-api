@@ -68,7 +68,7 @@ utilsRouter.post("/fill_database_with_rawg", async (_req, res) => {
   }
 });
 
-utilsRouter.get("/all-genres", async (req, res) => {
+utilsRouter.get("/all-genres", async ({}, res) => {
   try {
     const resp = await fetch(
       "https://api.rawg.io/api/games?key=20abda0d2dbd45fc94158c3175e4bdec&genres=action&ordering=-rating&page_size=200"
@@ -91,7 +91,7 @@ utilsRouter.get("/all-genres", async (req, res) => {
   }
 });
 
-utilsRouter.get("/all-platforms", async (req, res) => {
+utilsRouter.get("/all-platforms", async ({}, res) => {
   try {
     const resp = await fetch(
       "https://api.rawg.io/api/games?key=20abda0d2dbd45fc94158c3175e4bdec&genres=action&ordering=-rating&page_size=200"
