@@ -7,7 +7,7 @@
   "scripts": {
     "dev:mongodb": "tsx watch mongo-db-server.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/mongo-db-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

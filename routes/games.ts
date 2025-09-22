@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { GameController } from "../controllers/gamesController";
-import { TGameModel } from "../interfaces/modelInterfaces";
+import { GameController } from "../controllers/gamesController.js";
+import { TGameModel } from "../interfaces/modelInterfaces.js";
 
 export const createGameRouter = ({ gameModel }: { gameModel: TGameModel }) => {
   // Create the controller instance with the injected model

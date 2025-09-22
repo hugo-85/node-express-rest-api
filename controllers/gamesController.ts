@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { validateGame, validateParcialGame } from "../schemas/games";
+import { validateGame, validateParcialGame } from "../schemas/games.js";
 import {
   AllGamesQueryParams,
   CreateGameBody,
@@ -9,7 +9,7 @@ import {
   UpdateGameBody,
   UpdateGameParams,
 } from "../interfaces/controllerInterface";
-import { TGameModel } from "../interfaces/modelInterfaces";
+import { TGameModel } from "../interfaces/modelInterfaces.js";
 
 export class GameController implements IController {
   //implements IController
