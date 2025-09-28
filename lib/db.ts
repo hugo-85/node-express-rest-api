@@ -1,9 +1,9 @@
 import { MongoClient, Db } from "mongodb";
+import { MONGODB_URI, DATABASE_NAME } from "../configs/config.js";
 
 // Connection string para MongoDB Atlas
-const CONNECTION_STRING =
-  process.env.MONGODB_URI || "your_mongodb_connection_string_here";
-const databaseName = process.env.DATABASE_NAME || "moviesdb"; // database name
+const CONNECTION_STRING = MONGODB_URI;
+const databaseName = DATABASE_NAME;
 
 let client: MongoClient;
 let db: Db;

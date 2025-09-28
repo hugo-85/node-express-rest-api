@@ -9,7 +9,7 @@ type filterParams = {
   platform: string;
 };
 
-export const getAllGames = async ({ filters }: { filters: filterParams }) => {
+const getAllGames = async ({ filters }: { filters: filterParams }) => {
   try {
     const { page, limit, skip, genre, platform } = filters;
     const db = getDatabase();
@@ -42,7 +42,7 @@ export const getAllGames = async ({ filters }: { filters: filterParams }) => {
   }
 };
 
-export const getGame = async ({ gameId }: { gameId: string }) => {
+const getGame = async ({ gameId }: { gameId: string }) => {
   try {
     const db = getDatabase();
     const collection = db.collection("games");
@@ -68,7 +68,7 @@ export const getGame = async ({ gameId }: { gameId: string }) => {
   }
 };
 
-export const createGame = async ({ newGame }: { newGame: any }) => {
+const createGame = async ({ newGame }: { newGame: any }) => {
   try {
     const db = getDatabase();
     const collection = db.collection("games");
@@ -99,7 +99,7 @@ export const createGame = async ({ newGame }: { newGame: any }) => {
   }
 };
 
-export const updateGame = async ({
+const updateGame = async ({
   gameId,
   updateData,
 }: {
@@ -136,7 +136,7 @@ export const updateGame = async ({
   }
 };
 
-export const deleteGame = async ({ gameId }: { gameId: string }) => {
+const deleteGame = async ({ gameId }: { gameId: string }) => {
   try {
     const db = getDatabase();
     const collection = db.collection("games");

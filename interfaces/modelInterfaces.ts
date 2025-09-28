@@ -13,3 +13,20 @@ export interface TGameModel {
   updateGame: (params: { gameId: string; updateData: any }) => Promise<any>;
   deleteGame: (params: { gameId: string }) => Promise<any>;
 }
+
+export interface TAuthModel {
+  loginWithEmail: ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => Promise<{ ok: boolean; user?: any; message?: string }>;
+  createUser: ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => Promise<{ created: boolean; id?: string; message?: string }>;
+}

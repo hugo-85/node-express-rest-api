@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getDatabase } from "../lib/db.js";
+import { RAWG_API_KEY } from "../configs/config.js";
 
 export const utilsRouter = Router();
 
@@ -28,7 +29,7 @@ utilsRouter.post("/fill_database_with_rawg", async (_req, res) => {
     const db = getDatabase();
 
     const resp = await fetch(
-      `https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&ordering=-rating&page_size=40`
+      `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-rating&page_size=40`
     );
     const data: any = await resp.json();
     const results = data.results;
@@ -71,7 +72,7 @@ utilsRouter.post("/fill_database_with_rawg", async (_req, res) => {
 utilsRouter.get("/all-genres", async ({}, res) => {
   try {
     const resp = await fetch(
-      "https://api.rawg.io/api/games?key=20abda0d2dbd45fc94158c3175e4bdec&genres=action&ordering=-rating&page_size=200"
+      `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&genres=action&ordering=-rating&page_size=200`
     );
     const data: any = await resp.json();
     const genres = data.results.map((game: any) => game.genres).flat();
@@ -94,7 +95,7 @@ utilsRouter.get("/all-genres", async ({}, res) => {
 utilsRouter.get("/all-platforms", async ({}, res) => {
   try {
     const resp = await fetch(
-      "https://api.rawg.io/api/games?key=20abda0d2dbd45fc94158c3175e4bdec&genres=action&ordering=-rating&page_size=200"
+      `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&genres=action&ordering=-rating&page_size=200`
     );
     const data: any = await resp.json();
     const platforms = data.results.map((game: any) => game.platforms).flat();

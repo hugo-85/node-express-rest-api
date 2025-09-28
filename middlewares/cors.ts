@@ -1,6 +1,10 @@
 import cors from "cors";
 
-const ACCEPTED_ORIGINS = ["http://localhost:8080", "http://www.games.com"];
+const ACCEPTED_ORIGINS = [
+  "http://localhost:8080",
+  "http://localhost:5173",
+  "http://www.games.com",
+];
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
   cors({
