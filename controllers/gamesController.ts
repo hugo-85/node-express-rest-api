@@ -8,7 +8,7 @@ import {
   IController,
   UpdateGameBody,
   UpdateGameParams,
-} from "../interfaces/controllerInterface";
+} from "../interfaces/controllerInterface.js";
 import { TGameModel } from "../interfaces/modelInterfaces.js";
 
 export class GameController implements IController {

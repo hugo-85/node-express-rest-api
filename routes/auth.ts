@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AuthController } from "../controllers/authController";
+import { AuthController } from "../controllers/authController.js";
 import { TAuthModel } from "../interfaces/modelInterfaces.js";
 
 export const createAuthRouter = ({ authModel }: { authModel: TAuthModel }) => {

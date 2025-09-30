@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { TAuthIController, TUserBody } from "../interfaces/authInterface";
-import { validateAuth } from "../schemas/auth";
-import { TAuthModel } from "../interfaces/modelInterfaces";
+import { TAuthIController, TUserBody } from "../interfaces/authInterface.js";
+import { validateAuth } from "../schemas/auth.js";
+import { TAuthModel } from "../interfaces/modelInterfaces.js";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../configs/config.js";
-import { verifyToken } from "../lib/jwt";
+import { verifyToken } from "../lib/jwt.js";
 
 export class AuthController implements TAuthIController {
   private model: TAuthModel;
