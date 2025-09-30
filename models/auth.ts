@@ -14,7 +14,7 @@ const loginWithEmail = async ({
     const collection = db.collection("users");
 
     const dbUser = await collection.findOne({ email });
-    console.log("Found user:", dbUser);
+
     if (!dbUser) {
       return {
         ok: false,

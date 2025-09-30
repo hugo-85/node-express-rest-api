@@ -3,6 +3,8 @@ import { TAuthIController, TUserBody } from "../interfaces/authInterface";
 import { validateAuth } from "../schemas/auth";
 import { TAuthModel } from "../interfaces/modelInterfaces";
 import jwt from "jsonwebtoken";
+import { JWT_SECRET_KEY } from "../configs/config.js";
+import { verifyToken } from "../lib/jwt";
 
 export class AuthController implements TAuthIController {
   private model: TAuthModel;
@@ -37,8 +39,10 @@ export class AuthController implements TAuthIController {
 
       const token = jwt.sign(
         { email: respLogin.user.email },
-        "your_jwt_secret",
-        { expiresIn: "1h" }
+        JWT_SECRET_KEY as string,
+        {
+          expiresIn: "1h",
+        }
       );
 
       res
@@ -90,9 +94,28 @@ export class AuthController implements TAuthIController {
     }
   }
 
-  async logout(req: Request, res: Response) {
-    // Perform logout logic here
+  async logout({}, res: Response) {
+    res
+      .clearCookie("access_token")
+      .status(200)
+      .json({ message: "User logged out successfully" });
+  }
 
-    res.status(200).json({ message: "Logout successful" });
+  async verifyUser(req: Request, res: Response) {
+    const access_token = req.cookies?.access_token;
+
+    if (!access_token) {
+      res.status(401).json({ message: "No token provided" });
+      return;
+    }
+    try {
+      const resp = await verifyToken(access_token);
+      res.status(200).json({ user: resp });
+    } catch (error) {
+      res.status(401).json({
+        message: "❌ Invalid token",
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
   }
 }

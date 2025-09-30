@@ -8,6 +8,7 @@ import { TAuthModel, TGameModel } from "./interfaces/modelInterfaces.js";
 import { PORT } from "./configs/config.js";
 import { createAuthRouter } from "./routes/auth.js";
 import cookieParser from "cookie-parser";
+import { authenticateToken } from "./middlewares/auth.js";
 
 export const createApp = ({
   authModel,
@@ -24,6 +25,9 @@ export const createApp = ({
   app.use(json());
   app.use(corsMiddleware());
   app.use(cookieParser());
+
+  // Authentication middleware (protects all routes except public ones)
+  app.use(authenticateToken);
 
   // Sample route
   app.get("/", (_req, res) => {
